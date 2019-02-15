@@ -342,9 +342,11 @@
     return [WXApi sendReq:req];
 }
 
-+ (BOOL)sendAuthRequestForWeb:(id<WXApiDelegate>)delegate {
++ (BOOL)sendAuthRequestForWeb:(NSString *)scope
+                        State:(NSString *)state delegate:(id<WXApiDelegate>)delegate {
     SendAuthReq *req = [[SendAuthReq alloc] init];
-    
+    req.state = state;
+    req.scope = scope;
     return [WXApi sendAuthReq:req viewController:[UIApplication sharedApplication].keyWindow.rootViewController delegate:delegate];
 }
 

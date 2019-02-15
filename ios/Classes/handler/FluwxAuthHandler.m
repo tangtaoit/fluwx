@@ -30,7 +30,7 @@
                                                    State:call.arguments[@"state"]
                                                   OpenID:(openId == (id) [NSNull null]) ? nil : openId];
     }else{
-        done = [WXApiRequestHandler sendAuthRequestForWeb:[FluwxResponseHandler defaultManager]];
+        done = [WXApiRequestHandler sendAuthRequestForWeb:call.arguments[@"scope"] State:call.arguments[@"state"] delegate:[FluwxResponseHandler defaultManager]];
     }
     result(@(done));
 }
