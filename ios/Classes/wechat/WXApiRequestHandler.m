@@ -342,6 +342,12 @@
     return [WXApi sendReq:req];
 }
 
++ (BOOL)sendAuthRequestForWeb:(id<WXApiDelegate>)delegate {
+    SendAuthReq *req = [[SendAuthReq alloc] init];
+    
+    return [WXApi sendAuthReq:req viewController:[UIApplication sharedApplication].keyWindow.rootViewController delegate:delegate];
+}
+
 + (BOOL)openProfileWithAppID:(NSString *)appID
                  Description:(NSString *)description
                     UserName:(NSString *)userName

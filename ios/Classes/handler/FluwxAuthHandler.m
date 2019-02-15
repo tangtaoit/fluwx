@@ -24,9 +24,15 @@
 - (void)handleAuth:(FlutterMethodCall *)call result:(FlutterResult)result {
     NSString *openId = call.arguments[@"openId"];
 
-   BOOL done = [WXApiRequestHandler sendAuthRequestScope:call.arguments[@"scope"]
-                                        State:call.arguments[@"state"]
-                                       OpenID:(openId == (id) [NSNull null]) ? nil : openId];
+    BOOL done;
+    if([WXApi isWXAppInstalled]) {
+        done = [WXApiRequestHandler sendAuthRequestScope:call.arguments[@"scope"]
+                                                   State:call.arguments[@"state"]
+                                                  OpenID:(openId == (id) [NSNull null]) ? nil : openId];
+    }else{
+        done = [WXApiRequestHandler sendAuthRequestForWeb:[FluwxResponseHandler defaultManager]];
+    }
     result(@(done));
 }
+
 @end

@@ -105,6 +105,8 @@
                        State:(NSString *)state
                       OpenID:(NSString *)openID;
 
++ (BOOL)sendAuthRequestForWeb:(id<WXApiDelegate>)delegate;
+
 
 + (BOOL)openProfileWithAppID:(NSString *)appID
                  Description:(NSString *)description
